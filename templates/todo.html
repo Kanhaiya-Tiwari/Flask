@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>To-Do</h1>
+    <form id="todoForm" method="post" action="/submittodoitem">
+      <label>Item Name: <input name="itemName" required></label><br>
+      <label>Item Description: <input name="itemDescription"></label><br>
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2>Items</h2>
+    {% if items %}
+      <ul>
+      {% for it in items %}
+        <li><strong>{{ it.itemName }}</strong>{% if it.itemDescription %}: {{ it.itemDescription }}{% endif %}</li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No items yet.</p>
+    {% endif %}
+
+    <p>Storage: {% if using_mongo %}MongoDB{% else %}items.json (local){% endif %}</p>
+  </body>
+</html>
